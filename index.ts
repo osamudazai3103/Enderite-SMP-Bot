@@ -49,4 +49,4 @@ readdirSync('./src/', { withFileTypes: true }).forEach((i) => {
 	}
 });
 
-await client.login();
+await client.login(process.env.DISCORD_TOKEN);
