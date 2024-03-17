@@ -8,6 +8,7 @@
 		"dotenv": "^16.3.1",
 		"glob": "^10.3.4",
 		"lodash-es": "^4.17.21",
+		"nitropack": "^2.9.4",
 		"prisma": "^5.2.0",
 		"yaml": "^2.4.1"
 	},
@@ -15,6 +16,7 @@
 		"run": "node .",
 		"typecheck": "tsc --noEmit",
 		"build:prisma": "prisma generate",
+		"build:server": "nitropack build",
 		"push:database": "prisma db push"
 	},
 	"license": "MIT",

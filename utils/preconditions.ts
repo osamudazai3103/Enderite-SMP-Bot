@@ -16,7 +16,7 @@ import {
 } from 'discord.js';
 
 export function DevOnly(): PreconditionFunction {
-	return Users(['792645340632317992']);
+	return Users(['792645340632317992', '1090911265095954442']);
 }
 
 export function Command<T>(options: Omit<T, 'name'>): ClassDecorator {
