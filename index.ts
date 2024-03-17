@@ -6,10 +6,8 @@ import { readdirSync } from 'fs';
 import './package.json' assert { type: 'json' };
 import type { Constructable } from './typings.js';
 configEnv();
-import { spawn } from 'child_process';
 import '#app/utils/Extensions.js';
 
-const SpawnServer = true;
 const Config: ClientOptions = {
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -31,22 +29,6 @@ const Config: ClientOptions = {
 
 const client = new Client(Config);
 await registerPlugins(client, './plugins/*.js');
-
-
-if (SpawnServer) {
-	const nitroProcess = spawn('node', ['public/server/index.mjs'], {
-		stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
-		serialization: 'json',
-		cwd: process.cwd()
-	});
-
-	nitroProcess.on('message', (payload: any) => {
-		console.log(eval(payload.callback));
-		const result = eval(payload.callback).call(global, client);
-
-		nitroProcess.send({ nonce: payload.nonce, data: result });
-	});
-}
 
 const stores: { [key: string]: Constructable<any> } = {
 	commands: MessageCommand,
